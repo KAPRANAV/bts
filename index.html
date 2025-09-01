@@ -1,0 +1,286 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>JK — Golden Maknae (For Niha R)</title>
+
+  <!-- Fonts + AOS + Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+  <style>
+    :root{
+      --bg1:#2b1152; --bg2:#ff6ad5; --bg3:#00e0ff;
+      --ink:#ffffff; --muted:#e7dfff; --card: rgba(26,11,51,0.62); --accent:#ffd166;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(255,255,255,.08), transparent 60%),
+      linear-gradient(120deg,var(--bg1),var(--bg2) 48%,var(--bg3)); color:var(--ink); scroll-behavior:smooth}
+
+    /* NAV */
+    nav{position:sticky;top:0;z-index:1000;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;
+      background: linear-gradient(90deg, rgba(26,11,51,.55), rgba(255,106,213,.18));backdrop-filter: blur(6px); border-bottom:1px solid rgba(255,255,255,.06)}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:44px;height:44px;border-radius:12px;background:conic-gradient(from 120deg,var(--bg3),var(--bg2),var(--accent)); box-shadow:0 6px 30px rgba(0,0,0,.35)}
+    .brand h1{margin:0;font-size:18px;letter-spacing:.6px;font-weight:800}
+    .nav-links{display:flex;gap:14px}
+    .nav-links a{color:var(--ink);text-decoration:none;padding:8px 12px;border-radius:999px;font-weight:700;transition:.18s}
+    .nav-links a:hover{transform:translateY(-3px);background:rgba(255,255,255,.06)}
+
+    /* HERO */
+    .hero{min-height:86vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;position:relative;overflow:hidden}
+    .hero .glow{position:absolute;inset:-20%;background:
+      radial-gradient(circle at 20% 30%, rgba(255,106,213,.35), transparent 30%),
+      radial-gradient(circle at 80% 30%, rgba(0,224,255,.25), transparent 35%),
+      radial-gradient(circle at 50% 80%, rgba(255,209,102,.18), transparent 35%);
+      filter:blur(60px);z-index:0}
+    .hero-inner{position:relative;z-index:2;max-width:1200px;width:100%;display:grid;grid-template-columns:1fr 520px;gap:28px;align-items:center}
+    .left{padding:12px}
+    .honor-title{font-family:'Great Vibes',cursive;font-size:clamp(44px,7vw,88px);color:var(--accent);margin:0 0 6px}
+    .title{font-size:clamp(28px,5.5vw,48px);margin:0;font-weight:800;line-height:1.03}
+    .subtitle{color:var(--muted);margin-top:12px;font-size:16px}
+    .cta{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:12px 16px;border-radius:14px;font-weight:800;border:1px solid rgba(255,255,255,.14);background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));cursor:pointer}
+    .btn.primary{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:none;color:var(--ink)}
+    .statbar{display:flex;gap:16px;margin-top:16px;flex-wrap:wrap}
+    .stat{background:rgba(0,0,0,.18);padding:10px 14px;border-radius:12px;font-weight:700}
+
+    /* HERO IMAGE */
+    .hero-right{display:flex;align-items:center;justify-content:center;position:relative}
+    .hero-img{width:100%;max-width:420px;border-radius:26px;overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,.55);transform:perspective(1000px) rotateY(-8deg) rotateX(2deg);transition:transform .18s}
+    .hero-img img{display:block;width:100%;height:100%;object-fit:cover;vertical-align:middle}
+
+    /* Niha animated character (overlay badge) */
+    .niha-badge{position:absolute;right:26px;bottom:26px;background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.12));border-radius:18px;padding:12px;border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;align-items:center;gap:8px;backdrop-filter: blur(6px)}
+    .niha-name{font-family:'Great Vibes',cursive;font-size:28px;color:var(--accent);margin:0}
+    .niha-sub{font-size:12px;color:var(--muted);margin:0}
+
+    /* sections */
+    section{padding:80px 20px}
+    .container{max-width:1200px;margin:0 auto}
+
+    .section-title{font-size:clamp(28px,4.2vw,44px);font-weight:800;margin:0 0 8px}
+    .section-sub{color:var(--muted);margin-bottom:22px}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .gallery .card{border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))}
+    .gallery img{width:100%;height:320px;object-fit:cover;display:block;transition:transform .45s}
+    .gallery img:hover{transform:scale(1.06)}
+
+    /* Animated Niha SVG (larger) */
+    .niha-large{width:160px;margin:18px auto;animation:floatNiha 4s ease-in-out infinite}
+    @keyframes floatNiha{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+    /* quote strip */
+    .quote{overflow:hidden;padding:40px 0}
+    .marquee{display:flex;gap:22px;white-space:nowrap;animation:marq 20s linear infinite}
+    @keyframes marq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    /* footer */
+    footer{padding:34px 20px;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid rgba(255,255,255,.04)}
+
+    /* responsive */
+    @media (max-width:980px){ .hero-inner{grid-template-columns:1fr} .niha-badge{position:static;margin-top:18px} .hero{padding-bottom:40px} }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <h1>JK · Golden Maknae</h1>
+    </div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#niha">Niha</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top" aria-label="Hero">
+    <div class="glow" aria-hidden="true"></div>
+
+    <div class="hero-inner container">
+      <div class="left" data-aos="fade-right">
+        <div class="honor-title">For Niha R</div>
+        <h2 class="title">Jeon Jungkook</h2>
+        <p class="subtitle">Singer • Dancer • Performer — this page is lovingly dedicated to Niha R. Enjoy the gallery and fan vibes!</p>
+
+        <div class="cta">
+          <button class="btn primary" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})"><i>💜</i>&nbsp;View Gallery</button>
+          <button class="btn" onclick="document.getElementById('niha').scrollIntoView({behavior:'smooth'})"><i>✨</i>&nbsp;About Niha</button>
+        </div>
+
+        <div class="statbar" data-aos="fade-up" data-aos-delay="180">
+          <div class="stat">Debut: <b>2013</b></div>
+          <div class="stat">Nickname: <b>JK</b></div>
+          <div class="stat">Vocal: <b>Tenor</b></div>
+        </div>
+      </div>
+
+      <div class="hero-right" data-aos="zoom-in-left">
+        <!-- MAIN HERO IMAGE (JK) - Wikimedia direct link -->
+        <div class="hero-img" id="heroImage">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Jungkook_for_BTS_5th_anniversary_party_in_LA_photoshoot_by_Dispatch%2C_May_2018_04.jpg" alt="Jungkook portrait">
+        </div>
+
+        <!-- Niha badge with animated SVG character -->
+        <div class="niha-badge" role="note" aria-label="For Niha">
+          <div class="niha-large" title="Niha R">
+  <img src="./Niha_Avatar.png" alt="Niha Avatar" style="width:160px;height:auto;animation:floatNiha 4s ease-in-out infinite;">
+</div>
+
+
+          <div>
+            <div class="niha-name">Niha R</div>
+            <div class="niha-sub">Beloved fan ✨</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container" data-aos="fade-up">
+      <h3 class="section-title">About Jungkook</h3>
+      <p class="section-sub">Jeon Jungkook, the youngest member of BTS, is known for his vocal power, dancing, and stage charisma. This bright, animated fan page shows real JK images and celebrates him — dedicated specially to Niha R.</p>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <div class="container" data-aos="fade-up">
+      <h3 class="section-title">Gallery</h3>
+      <p class="section-sub">All images are loaded from Wikimedia Commons so you don't need to upload anything. Click an image to open it in a new tab.</p>
+
+      <div class="gallery">
+        <a class="card" href="https://upload.wikimedia.org/wikipedia/commons/9/9e/Jungkook_for_Dispatch_%22Boy_With_Luv%22_MV_behind_the_scene_shooting%2C_15_March_2019_07_%28cropped%29.jpg" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Jungkook_for_Dispatch_%22Boy_With_Luv%22_MV_behind_the_scene_shooting%2C_15_March_2019_07_%28cropped%29.jpg" alt="Jungkook 2019">
+        </a>
+
+        <a class="card" href="https://upload.wikimedia.org/wikipedia/commons/b/b1/Jungkook_on_the_Billboard_Music_Awards_red_carpet%2C_1_May_2019.jpg" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Jungkook_on_the_Billboard_Music_Awards_red_carpet%2C_1_May_2019.jpg" alt="Jungkook BBMAs">
+        </a>
+
+        <a class="card" href="https://upload.wikimedia.org/wikipedia/commons/c/cb/160217_Gaon_Chart_K-POP_Awards_Red_Carpet_BTS_Jungkook.jpg" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/160217_Gaon_Chart_K-POP_Awards_Red_Carpet_BTS_Jungkook.jpg" alt="Jungkook Gaon Awards">
+        </a>
+
+        <a class="card" href="https://upload.wikimedia.org/wikipedia/commons/2/2e/Jungkook_for_BTS_5th_anniversary_party_in_LA_photoshoot_by_Dispatch%2C_May_2018_04.jpg" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Jungkook_for_BTS_5th_anniversary_party_in_LA_photoshoot_by_Dispatch%2C_May_2018_04.jpg" alt="Jungkook Portrait">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Niha Section -->
+  <section id="niha">
+    <div class="container" data-aos="zoom-in">
+      <h3 class="section-title">About Niha R</h3>
+      <p class="section-sub">This site is dedicated to <strong>Niha R</strong> — the lovely fan who inspired this page. The little character on the hero (white sleeveless top, blue baggy pants, white shoes) is made just for her.</p>
+
+      <div style="max-width:760px;margin:18px auto;display:flex;gap:18px;align-items:center;justify-content:center;flex-wrap:wrap">
+        <!-- Large Niha SVG repeated for the Niha section -->
+        <div style="flex:0 0 220px">
+          <div style="background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); padding:18px;border-radius:18px;border:1px solid rgba(255,255,255,.06)">
+           <div class="niha-large" style="width:100%;text-align:center">
+  <img src="./Niha_Avatar.png" alt="Niha Avatar" style="width:160px;height:auto;animation:floatNiha 4s ease-in-out infinite;">
+</div>
+
+          </div>
+        </div>
+
+        <div style="flex:1; min-width:240px; text-align:left; color:var(--muted)">
+          <p style="margin:0 0 8px">Niha R — You inspire this page. Keep shining like the purple star you are. 💜</p>
+          <p style="margin:0; font-size:13px">Tip: share this page with friends. Replace the images with your favourite JK photos if you want a personal gallery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote strip -->
+  <section class="quote" aria-hidden="false">
+    <div class="container">
+      <div class="marquee" aria-hidden="true">
+        <div class="chip">“Golden maknae forever.”</div>
+        <div class="chip">“Stage king — JK.”</div>
+        <div class="chip">“Voice that soothes.”</div>
+        <div class="chip">“Charisma + kindness = JK.”</div>
+        <div class="chip">“Golden maknae forever.”</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>Made with 💜 for Jungkook and Niha R.</p>
+      <p style="font-size:12px;margin-top:8px;color:rgba(255,255,255,.7)">
+        Image sources: Wikimedia Commons (Dispatch / fan photographers). Please keep attribution when reusing images. 
+      </p>
+      <p style="font-size:11px;margin-top:6px;opacity:.85">Attributions: Dispatch & various photographers (images used under Commons licenses).</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+  <script>
+    AOS.init({ duration:900, once:true, offset:120 });
+
+    // Hero image tilt parallax
+    const hero = document.querySelector('.hero');
+    const heroImg = document.querySelector('.hero-img');
+    hero.addEventListener('mousemove', (e) => {
+      const r = hero.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      heroImg.style.transform = `perspective(1000px) rotateY(${x * -12}deg) rotateX(${y * 8}deg) scale(1.02)`;
+    });
+    hero.addEventListener('mouseleave', () => {
+      heroImg.style.transform = 'perspective(1000px) rotateY(-8deg) rotateX(2deg)';
+    });
+
+    // floating hearts on hero using GSAP
+    gsap.to('.glow', {opacity:1, duration:2});
+
+    // Click hearts
+    const emojis = ['💜','✨','💖','🌟'];
+    window.addEventListener('click', (e) => {
+      const span = document.createElement('div');
+      span.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      span.style.position = 'fixed';
+      span.style.left = e.pageX + 'px';
+      span.style.top = e.pageY + 'px';
+      span.style.transform = 'translate(-50%,-50%)';
+      span.style.fontSize = (16 + Math.random()*18) + 'px';
+      span.style.pointerEvents = 'none';
+      span.style.zIndex = 9999;
+      span.style.transition = 'transform .9s ease, opacity .9s ease';
+      document.body.appendChild(span);
+      requestAnimationFrame(()=> {
+        span.style.transform = 'translate(-50%,-140%) scale(1.6)';
+        span.style.opacity = '0';
+      });
+      setTimeout(()=> span.remove(), 900);
+    });
+
+    // simple gentle arm wave on the SVG (CSS/JS)
+    function waveArm(selector, deg=18, duration=900) {
+      const arm = document.querySelector(selector);
+      if(!arm) return;
+      let up = true;
+      setInterval(()=> {
+        arm.style.transform = `translate(36px,98px) rotate(${up ? deg : 6}deg)`;
+        up = !up;
+      }, duration);
+    }
+    waveArm('#leftArm', 18, 1100);
+    waveArm('#leftArm2', 12, 1200);
+  </script>
+</body>
+</html>
